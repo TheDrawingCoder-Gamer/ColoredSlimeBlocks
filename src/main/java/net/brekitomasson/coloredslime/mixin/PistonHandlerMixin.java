@@ -1,6 +1,7 @@
 package net.brekitomasson.coloredslime.mixin;
 
 import net.brekitomasson.coloredslime.blocks.ColoredSlimeBlock;
+import net.brekitomasson.coloredslime.blocks.ColoredHoneyBlock;
 import net.brekitomasson.coloredslime.util.Helpers;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -15,8 +16,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public abstract class PistonHandlerMixin {
 
     @Inject(method = "isBlockSticky", at = @At("HEAD"), cancellable = true)
-    private static void isBlockSticky(BlockState state, CallbackInfoReturnable cir) {
-        if (state.getBlock() instanceof ColoredSlimeBlock) {
+    private static void isBlockSticky(BlockState state, CallbackInfoReturnable<Boolean> cir) {
+        if (state.getBlock() instanceof ColoredSlimeBlock || state.getBlock() instanceof ColoredHoneyBlock) {
             cir.setReturnValue(true);
         }
     }

@@ -20,7 +20,7 @@ public class ColoredSlime implements ModInitializer {
     }
 
     public static final Map<DyeColor, Block> slimeBlocks = Helpers.generateSlimeBlocks();
-
+    public static final Map<DyeColor, Block> honeyBlocks = Helpers.generateHoneyBlocks();
     @Override
     public void onInitialize() {
         for (DyeColor color : DyeColor.values()) {
@@ -29,6 +29,11 @@ public class ColoredSlime implements ModInitializer {
 
             registerSlimeBlock(name, block);
             registerSlimeItem(name, block);
+
+            String honeyName = color.name().toLowerCase() + "_honey_block";
+            Block honeyBlock = honeyBlocks.get(color);
+            registerSlimeBlock(honeyName, honeyBlock);
+            registerSlimeItem(honeyName, honeyBlock);
         }
     }
 }
